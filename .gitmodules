@@ -1,3 +1,21 @@
 [submodule "nvim-cmp"]
 	path = vendor/nvim-cmp
 	url = https://github.com/hrsh7th/nvim-cmp.git
+[submodule "Snacks"]
+	path = vendor/snacks
+	url = git@github.com:folke/snacks.nvim.git
+[submodule "MiniSnippets"]
+	path = vendor/mini.snippets
+	url = git@github.com:nvim-mini/mini.snippets.git
+[submodule "MiniFiles"]
+	path = vendor/mini.files
+	url = git@github.com:nvim-mini/mini.files.git
+[submodule "MiniHipatterns"]
+	path = vendor/mini.hipatterns
+	url = git@github.com:nvim-mini/mini.hipatterns.git
+[submodule "lazy.nvim"]
+	path = vendor/lazy.nvim
+	url = git@github.com:folke/lazy.nvim.git
+[submodule "wk"]
+	path = vendor/which-key.nvim
+	url = git@github.com:folke/which-key.nvim.git

@@ -13,6 +13,9 @@ vim.g.geekvim = {
   -- Hide deprecation warnings
   deprecation_warnings = false,
 
+  -- Check lazy.nvim import order on startup
+  check_order = true,
+
   -- Show the current document symbols location from Trouble in lualine
   -- You can disable this for a buffer by setting `vim.b.trouble_lualine = false`
   trouble_lualine = true,
@@ -52,6 +55,10 @@ vim.g.geekvim = {
     -- Can be one of: nvim-snippets, mini, luasnip, user, auto
     -- Leave it to "auto" to automatically use the default
     snippets = "auto",
+
+    -- Enable VS Code features
+    -- Enables several extensions that emulate VS Code behavior
+    vscode = true
   },
 
   projects = {
@@ -153,7 +160,7 @@ opt.splitright = true -- Put new windows right of current
 opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 opt.tabstop = 2 -- Number of spaces tabs count for
 opt.termguicolors = true -- True color support
-opt.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
+opt.timeoutlen = vim.g.geekvim.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
 opt.undofile = true
 opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold

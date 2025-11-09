@@ -151,13 +151,13 @@ function M.disable(server, cond)
   end)
 end
 
----@param opts? PowerFormatter| {filter?: (string|lsp.Client.filter)}
+---@param opts? GeekFormatter| {filter?: (string|lsp.Client.filter)}
 function M.formatter(opts)
   opts = opts or {}
   local filter = opts.filter or {}
   filter = type(filter) == "string" and { name = filter } or filter
   ---@cast filter lsp.Client.filter
-  ---@type PowerFormatter
+  ---@type GeekFormatter
   local ret = {
     name = "LSP",
     primary = true,
@@ -178,7 +178,7 @@ function M.formatter(opts)
       end, ret)
     end,
   }
-  return GeekVim.merge(ret, opts) --[[@as PowerFormatter]]
+  return GeekVim.merge(ret, opts) --[[@as GeekFormatter]]
 end
 
 ---@alias lsp.Client.format {timeout_ms?: number, format_options?: table} | lsp.Client.filter

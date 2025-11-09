@@ -1,4 +1,4 @@
-if not vim.g.geekvim_snippets == "mini" then
+if not vim.g.geekvim.snippets == "mini" then
   return {}
 end
 
@@ -33,7 +33,7 @@ end
   }
 --]]
 
-local include_in_completion = vim.g.geekvim_snippets_in_completion == nil or vim.g.geekvim_snippets_in_completion
+local include_in_completion = vim.g.geekvim.cmp.snippets == nil or vim.g.geekvim.cmp.snippets
 
 local function expand_from_lsp(snippet)
   local insert = MiniSnippets.config.expand.insert or MiniSnippets.default_insert

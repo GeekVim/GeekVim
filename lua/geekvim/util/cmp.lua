@@ -74,7 +74,7 @@ end
 function M.auto_brackets(entry)
   local cmp = require("cmp")
   local Kind = cmp.lsp.CompletionItemKind
-  local item = entry:get_completion_item()
+  local item = entry:completion_item()
   if vim.tbl_contains({ Kind.Function, Kind.Method }, item.kind) then
     local cursor = vim.api.nvim_win_get_cursor(0)
     local prev_char = vim.api.nvim_buf_get_text(0, cursor[1] - 1, cursor[2], cursor[1] - 1, cursor[2] + 1, {})[1]
@@ -94,7 +94,7 @@ function M.add_missing_snippet_docs(window)
   local entries = window:get_entries()
   for _, entry in ipairs(entries) do
     if entry:get_kind() == Kind.Snippet then
-      local item = entry:get_completion_item()
+      local item = entry:completion_item()
       if not item.documentation and item.insertText then
         item.documentation = {
           kind = cmp.lsp.MarkupKind.Markdown,
@@ -144,10 +144,10 @@ function M.expand(snippet)
       or ("Failed to parse snippet.\n" .. err)
 
     GeekVim[ok and "warn" or "error"](
-      ([[%s
+      string.format([[%s
 ```%s
 %s
-```]]):format(msg, vim.bo.filetype, snippet),
+```]], msg, vim.bo.filetype, snippet),
       { title = "vim.snippet" }
     )
   end
@@ -165,13 +165,14 @@ function M.setup(opts)
   end
 
   local parse = require("cmp.utils.snippet").parse
-  require("cmp.utils.snippet").parse = function(input)
+  local parsefn = function(input)
     local ok, ret = pcall(parse, input)
     if ok then
       return ret
     end
     return GeekVim.cmp.snippet_preview(input)
   end
+  require("cmp.utils.snippet").parse = parsefn
 
   local cmp = require("cmp")
   cmp.setup(opts)

@@ -3,7 +3,7 @@ return {
   {
     "nvimtools/none-ls.nvim",
     priority = 20,
-    event = "PowerFile",
+    event = "GeekFile",
     dependencies = { "mason-org/mason.nvim" },
     init = function()
       GeekVim.on_very_lazy(function()

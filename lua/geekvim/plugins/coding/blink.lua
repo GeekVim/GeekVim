@@ -1,5 +1,5 @@
 ---@diagnostic disable: missing-fields
-if not vim.g.geekvim_cmp == "blink.cmp" then
+if not vim.g.geekvim.cmp == "blink.cmp" then
   return {
     "saghen/blink.cmp",
     dependencies = {},
@@ -36,7 +36,7 @@ return {
         "saghen/blink.compat",
         optional = true,
         opts = {},
-        version = not vim.g.geekvim_blink_main and "*",
+        version = not build_main and "*",
       },
     },
     event = "InsertEnter",

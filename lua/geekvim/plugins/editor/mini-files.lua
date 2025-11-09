@@ -1,4 +1,4 @@
-if not vim.g.geekvim_explorer == "mini" then
+if not vim.g.geekvim.explorer == "mini" then
   return {
     "echasnovski/mini.files",
     dependencies = {},

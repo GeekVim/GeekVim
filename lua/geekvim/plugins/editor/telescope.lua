@@ -1,4 +1,4 @@
-if not vim.g.geekvim_picker == "telescope" then
+if not vim.g.geekvim.picker == "telescope" then
   return {
     "nvim-telescope/telescope.nvim",
     dependencies = {},
@@ -60,7 +60,7 @@ for _, cmd in ipairs({ "make", "cmake", "gmake" }) do
   end
 end
 
----@type PowerPicker
+---@type GeekPicker
 local picker = {
   name = "telescope",
   commands = {

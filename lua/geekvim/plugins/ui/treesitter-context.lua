@@ -2,7 +2,7 @@
 return {
   "nvim-treesitter/nvim-treesitter-context",
   priority = 20,
-  event = "PowerFile",
+  event = "GeekFile",
   opts = function()
     local tsc = require("treesitter-context")
     Snacks.toggle({

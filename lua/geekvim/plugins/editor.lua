@@ -122,7 +122,7 @@ return {
   -- hunks in a commit.
   {
     "lewis6991/gitsigns.nvim",
-    event = "PowerFile",
+    event = "GeekFile",
     opts = {
       signs = {
         add = { text = "▎" },
@@ -246,7 +246,7 @@ return {
   {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
-    event = "PowerFile",
+    event = "GeekFile",
     opts = {},
     -- stylua: ignore
     keys = {

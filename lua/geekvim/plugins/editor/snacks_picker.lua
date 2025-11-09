@@ -51,7 +51,7 @@ end
 
 ---@module 'snacks'
 
----@type PowerPicker
+---@type GeekPicker
 local picker = {
   name = "snacks",
   commands = {

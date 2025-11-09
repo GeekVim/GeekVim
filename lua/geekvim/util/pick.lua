@@ -12,15 +12,15 @@ local M = setmetatable({}, {
 ---@field buf? number
 ---@field show_untracked? boolean
 
----@class PowerPicker
+---@class GeekPicker
 ---@field name string
 ---@field open fun(command:string, opts?:geekvim.util.pick.Opts)
 ---@field commands table<string, string>
 
----@type PowerPicker?
+---@type GeekPicker?
 M.picker = nil
 
----@param picker PowerPicker
+---@param picker GeekPicker
 function M.register(picker)
   if M.picker and M.picker.name ~= picker.name then
     GeekVim.warn(

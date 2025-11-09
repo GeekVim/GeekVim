@@ -1,4 +1,4 @@
-if not vim.g.geekvim_picker == "fzf" then
+if not vim.g.geekvim.picker == "fzf" then
   return {
     "ibhagwan/fzf-lua",
     dependencies = {},
@@ -55,7 +55,7 @@ end
 ---@class FzfLuaOpts: geekvim.util.pick.Opts
 ---@field cmd string?
 
----@type PowerPicker
+---@type GeekPicker
 local picker = {
   name = "fzf",
   commands = {
@@ -246,12 +246,13 @@ return {
     end,
     init = function()
       GeekVim.on_very_lazy(function()
-        vim.ui.select = function(...)
+        local select = function(...)
           require("lazy").load({ plugins = { "fzf-lua" } })
           local opts = GeekVim.opts("fzf-lua") or {}
           require("fzf-lua").register_ui_select(opts.ui_select or nil)
           return vim.ui.select(...)
         end
+        vim.ui.select = select
       end)
     end,
     keys = {

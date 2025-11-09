@@ -8,7 +8,7 @@ M.plugin = {
   priority = 20,
   recommended = true,
   desc = "Highlight colors in your code. Also includes Tailwind CSS support.",
-  event = "PowerFile",
+  event = "GeekFile",
   opts = function()
     local hi = require("mini.hipatterns")
     return {
@@ -72,7 +72,7 @@ M.plugin = {
         group = function(_, _, m)
           ---@type string
           local match = m.full_match
-          ---@type string, number
+          ---@type string, number?
           local color, shade = match:match("[%w-]+%-([a-z%-]+)%-(%d+)")
           shade = tonumber(shade)
           local bg = vim.tbl_get(M.colors, color, shade)

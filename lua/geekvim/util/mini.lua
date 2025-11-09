@@ -66,12 +66,12 @@ function M.ai_whichkey(opts)
   mappings.goto_right = nil
 
   for name, prefix in pairs(mappings) do
-    name = name:gsub("^around_", ""):gsub("^inside_", "")
+    name = string.gsub(name, "^around_", ""):gsub("^inside_", "")
     ret[#ret + 1] = { prefix, group = name }
     for _, obj in ipairs(objects) do
       local desc = obj.desc
-      if prefix:sub(1, 1) == "i" then
-        desc = desc:gsub(" with ws", "")
+      if string.sub(prefix, 1, 1) == "i" then
+        desc = string.gsub(desc, " with ws", "")
       end
       ret[#ret + 1] = { prefix .. obj[1], desc = obj.desc }
     end

@@ -6,16 +6,16 @@ local M = setmetatable({}, {
   end,
 })
 
----@class PowerFormatter
+---@class GeekFormatter
 ---@field name string
 ---@field primary? boolean
 ---@field format fun(bufnr:number)
 ---@field sources fun(bufnr:number):string[]
 ---@field priority number
 
-M.formatters = {} ---@type PowerFormatter[]
+M.formatters = {} ---@type GeekFormatter[]
 
----@param formatter PowerFormatter
+---@param formatter GeekFormatter
 function M.register(formatter)
   M.formatters[#M.formatters + 1] = formatter
   table.sort(M.formatters, function(a, b)
@@ -31,11 +31,11 @@ function M.formatexpr()
 end
 
 ---@param buf? number
----@return (PowerFormatter|{active:boolean,resolved:string[]})[]
+---@return (GeekFormatter|{active:boolean,resolved:string[]})[]
 function M.resolve(buf)
   buf = buf or vim.api.nvim_get_current_buf()
   local have_primary = false
-  ---@param formatter PowerFormatter
+  ---@param formatter GeekFormatter
   return vim.tbl_map(function(formatter)
     local sources = formatter.sources(buf)
     local active = #sources > 0 and (not formatter.primary or not have_primary)
@@ -76,7 +76,7 @@ function M.info(buf)
   end
   GeekVim[enabled and "info" or "warn"](
     table.concat(lines, "\n"),
-    { title = "PowerFormat (" .. (enabled and "enabled" or "disabled") .. ")" }
+    { title = "GeekFormat (" .. (enabled and "enabled" or "disabled") .. ")" }
   )
 end
 
@@ -141,19 +141,19 @@ end
 function M.setup()
   -- Autoformat autocmd
   vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.api.nvim_create_augroup("PowerFormat", {}),
+    group = vim.api.nvim_create_augroup("GeekFormat", {}),
     callback = function(event)
       M.format({ buf = event.buf })
     end,
   })
 
   -- Manual format
-  vim.api.nvim_create_user_command("PowerFormat", function()
+  vim.api.nvim_create_user_command("GeekFormat", function()
     M.format({ force = true })
   end, { desc = "Format selection or buffer" })
 
   -- Format info
-  vim.api.nvim_create_user_command("PowerFormatInfo", function()
+  vim.api.nvim_create_user_command("GeekFormatInfo", function()
     M.info()
   end, { desc = "Show info about the formatters for the current buffer" })
 end

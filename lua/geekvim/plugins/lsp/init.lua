@@ -2,7 +2,7 @@ return {
   -- lspconfig
   {
     "neovim/nvim-lspconfig",
-    event = "PowerFile",
+    event = "GeekFile",
     dependencies = {
       "mason-org/mason.nvim",
       { "mason-org/mason-lspconfig.nvim", config = function() end },
@@ -69,7 +69,7 @@ return {
             -- mason = false, -- set to false if you don't want this server to be installed with mason
             -- Use this to add any additional keymaps
             -- for specific lsp servers
-            -- ---@type PowerKeysSpec[]
+            -- ---@type GeekKeysSpec[]
             -- keys = {},
             settings = {
               Lua = {

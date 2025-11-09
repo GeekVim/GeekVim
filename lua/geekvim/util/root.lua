@@ -6,15 +6,15 @@ local M = setmetatable({}, {
   end,
 })
 
----@class PowerRoot
+---@class GeekRoot
 ---@field paths string[]
----@field spec PowerRootSpec
+---@field spec GeekRootSpec
 
----@alias PowerRootFn fun(buf: number): (string|string[])
+---@alias GeekRootFn fun(buf: number): (string|string[])
 
----@alias PowerRootSpec string|string[]|PowerRootFn
+---@alias GeekRootSpec string|string[]|GeekRootFn
 
----@type PowerRootSpec[]
+---@type GeekRootSpec[]
 M.spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 M.detectors = {}
@@ -82,8 +82,8 @@ function M.realpath(path)
   return GeekVim.norm(path)
 end
 
----@param spec PowerRootSpec
----@return PowerRootFn
+---@param spec GeekRootSpec
+---@return GeekRootFn
 function M.resolve(spec)
   if M.detectors[spec] then
     return M.detectors[spec]
@@ -95,13 +95,13 @@ function M.resolve(spec)
   end
 end
 
----@param opts? { buf?: number, spec?: PowerRootSpec[], all?: boolean }
+---@param opts? { buf?: number, spec?: GeekRootSpec[], all?: boolean }
 function M.detect(opts)
   opts = opts or {}
   opts.spec = opts.spec or type(vim.g.root_spec) == "table" and vim.g.root_spec or M.spec
   opts.buf = (opts.buf == nil or opts.buf == 0) and vim.api.nvim_get_current_buf() or opts.buf
 
-  local ret = {} ---@type PowerRoot[]
+  local ret = {} ---@type GeekRoot[]
   for _, spec in ipairs(opts.spec) do
     local paths = M.resolve(spec)(opts.buf)
     paths = paths or {}
@@ -153,7 +153,7 @@ end
 M.cache = {}
 
 function M.setup()
-  vim.api.nvim_create_user_command("PowerRoot", function()
+  vim.api.nvim_create_user_command("GeekRoot", function()
     GeekVim.root.info()
   end, { desc = "GeekVim roots for the current buffer" })
 

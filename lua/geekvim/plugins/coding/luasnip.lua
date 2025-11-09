@@ -1,4 +1,4 @@
-if not vim.g.geekvim_snippets == "luasnip" then
+if not vim.g.geekvim.snippets == "luasnip" then
   return {}
 end
 
@@ -36,7 +36,7 @@ return {
     "L3MON4D3/LuaSnip",
     priority = 20,
     opts = function()
-      GeekVim.cmp.actions.snippet_forward = function()
+      local snippet_forward = function()
         if require("luasnip").jumpable(1) then
           vim.schedule(function()
             require("luasnip").jump(1)
@@ -44,12 +44,14 @@ return {
           return true
         end
       end
-      GeekVim.cmp.actions.snippet_stop = function()
+      GeekVim.cmp.actions.snippet_forward = snippet_forward
+      local snippet_stop = function()
         if require("luasnip").expand_or_jumpable() then -- or just jumpable(1) is fine?
           require("luasnip").unlink_current()
           return true
         end
       end
+      GeekVim.cmp.actions.snippet_stop = snippet_stop
     end,
   },
 

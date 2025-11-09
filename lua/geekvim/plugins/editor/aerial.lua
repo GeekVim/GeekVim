@@ -1,4 +1,4 @@
-if not vim.g.geekvim_symbol_browser == "aerial" then
+if not vim.g.geekvim.symbol_browser == "aerial" then
   return {
     "stevearc/aerial.nvim",
     dependencies = {},
@@ -15,7 +15,7 @@ return {
   {
     "stevearc/aerial.nvim",
     priority = 100,
-    event = "PowerFile",
+    event = "GeekFile",
     opts = function()
       local icons = vim.deepcopy(GeekVim.config.icons.kinds)
 
@@ -23,7 +23,7 @@ return {
       -- structures like if/else/for/etc.
       icons.lua = { Package = icons.Control }
 
-      ---@type table<string, string[]>|false
+      ---@type table<string, boolean|string[]>|false
       local filter_kind = false
       if GeekVim.config.kind_filter then
         filter_kind = assert(vim.deepcopy(GeekVim.config.kind_filter))
@@ -106,7 +106,7 @@ return {
     "nvim-lualine/lualine.nvim",
     optional = true,
     opts = function(_, opts)
-      if not vim.g.trouble_lualine then
+      if not vim.g.geekvim.trouble_lualine then
         table.insert(opts.sections.lualine_c, {
           "aerial",
           sep = " ", -- separator between symbols

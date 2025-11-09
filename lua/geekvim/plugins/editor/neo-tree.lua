@@ -1,4 +1,4 @@
-if not vim.g.geekvim_explorer == "neo-tree" then
+if not vim.g.geekvim.explorer == "neo-tree" then
   return {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {},
@@ -68,7 +68,7 @@ return {
           if package.loaded["neo-tree"] then
             return
           else
-            local stats = vim.uv.fs_stat(vim.fn.argv(0))
+            local stats = vim.uv.fs_stat(vim.fn.argv()[0])
             if stats and stats.type == "directory" then
               require("neo-tree")
             end

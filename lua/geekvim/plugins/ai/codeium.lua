@@ -29,13 +29,14 @@ return {
     "Exafunction/codeium.nvim",
     priority = 20,
     opts = function()
-      GeekVim.cmp.actions.ai_accept = function()
+      local function ai_accept()
         if require("codeium.virtual_text").get_current_completion_item() then
           GeekVim.create_undo()
           vim.api.nvim_input(require("codeium.virtual_text").accept())
           return true
         end
       end
+      GeekVim.cmp.actions.ai_accept = ai_accept
     end,
   },
 

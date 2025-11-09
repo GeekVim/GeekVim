@@ -1,6 +1,6 @@
-local PowerUtil = require("lazy.core.util")
+local GeekUtil = require("lazy.core.util")
 
----@class geekvim.util: PowerUtilCore
+---@class geekvim.util: LazyUtilCore
 ---@field config GeekVimConfig
 ---@field ui geekvim.util.ui
 ---@field lsp geekvim.util.lsp
@@ -9,18 +9,17 @@ local PowerUtil = require("lazy.core.util")
 ---@field format geekvim.util.format
 ---@field plugin geekvim.util.plugin
 ---@field inject geekvim.util.inject
----@field news geekvim.util.news
----@field json geekvim.util.json
 ---@field lualine geekvim.util.lualine
 ---@field mini geekvim.util.mini
 ---@field pick geekvim.util.pick
 ---@field cmp geekvim.util.cmp
+---@field deprecated geekvim.util.deprecated
 local M = {}
 
 setmetatable(M, {
   __index = function(t, k)
-    if PowerUtil[k] then
-      return PowerUtil[k]
+    if GeekUtil[k] then
+      return GeekUtil[k]
     end
     if k == "lazygit" or k == "toggle" then -- HACK: special case for lazygit
       return M.deprecated[k]()
@@ -33,7 +32,7 @@ setmetatable(M, {
 })
 
 function M.is_win()
-  return vim.uv.os_uname().sysname:find("Windows") ~= nil
+  return string.find(vim.uv.os_uname().sysname, "Windows") ~= nil
 end
 
 ---@param name string
@@ -117,6 +116,10 @@ function M.lazy_notify()
   local timer = vim.uv.new_timer()
   local check = assert(vim.uv.new_check())
 
+  if timer == nil or check == nil then
+    return
+  end
+
   local replay = function()
     timer:stop()
     check:stop()
@@ -169,19 +172,19 @@ end
 -- It will also set `silent` to true by default.
 function M.safe_keymap_set(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
-  ---@cast keys PowerKeysHandler
+  ---@cast keys GeekKeysLsp
   local modes = type(mode) == "string" and { mode } or mode
 
   ---@param m string
   modes = vim.tbl_filter(function(m)
-    return not (keys.have and keys:have(lhs, m))
+    return not (keys.has and keys:has(lhs, m))
   end, modes)
 
   -- do not create the keymap if a lazy keys handler exists
   if #modes > 0 then
     opts = opts or {}
     opts.silent = opts.silent ~= false
-    if opts.remap and not vim.g.vscode then
+    if opts.remap and not vim.g.geekvim.vscode then
       ---@diagnostic disable-next-line: no-unknown
       opts.remap = nil
     end
@@ -237,7 +240,7 @@ for _, level in ipairs({ "info", "warn", "error" }) do
   M[level] = function(msg, opts)
     opts = opts or {}
     opts.title = opts.title or "GeekVim"
-    return PowerUtil[level](msg, opts)
+    return GeekUtil[level](msg, opts)
   end
 end
 

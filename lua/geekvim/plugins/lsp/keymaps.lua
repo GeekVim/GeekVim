@@ -1,12 +1,12 @@
 local M = {}
 
----@type PowerKeysLspSpec[]|nil
+---@type GeekKeysLspSpec[]|nil
 M._keys = nil
 
----@alias PowerKeysLspSpec PowerKeysSpec|{has?:string|string[], cond?:fun():boolean}
----@alias PowerKeysLsp PowerKeys|{has?:string|string[], cond?:fun():boolean}
+---@alias GeekKeysLspSpec GeekKeysLspSpec|{has?:string|string[], cond?:fun():boolean}
+---@alias GeekKeysLsp GeekKeysLsp|{has?:string|string[], cond?:fun():boolean}
 
----@return PowerKeysLspSpec[]
+---@return GeekKeysLspSpec[]
 function M.get()
   if M._keys then
     return M._keys
@@ -61,7 +61,7 @@ function M.has(buffer, method)
   return false
 end
 
----@return PowerKeysLsp[]
+---@return GeekKeysLsp[]
 function M.resolve(buffer)
   local Keys = require("lazy.core.handler.keys")
   if not Keys.resolve then

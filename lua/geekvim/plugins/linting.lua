@@ -1,7 +1,7 @@
 return {
   {
     "mfussenegger/nvim-lint",
-    event = "PowerFile",
+    event = "GeekFile",
     opts = {
       -- Event to trigger linters
       events = { "BufWritePost", "BufReadPost", "InsertLeave" },

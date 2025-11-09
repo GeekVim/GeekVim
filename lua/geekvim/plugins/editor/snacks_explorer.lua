@@ -1,4 +1,4 @@
-if not vim.g.geekvim_explorer == "snacks" then
+if not vim.g.geekvim.explorer == "snacks" then
   return {
     "folke/snacks.nvim",
     keys = {

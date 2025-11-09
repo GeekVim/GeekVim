@@ -120,7 +120,7 @@ end, { desc = "Format" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  local go = next and vim.lsp.diagnostic.goto_next or vim.lsp.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
     go({ severity = severity })
@@ -178,9 +178,6 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 -- highlights under cursor
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect Tree" })
-
--- GeekVim Changelog
-map("n", "<leader>L", function() GeekVim.news.changelog() end, { desc = "GeekVim Changelog" })
 
 -- floating terminal
 map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })

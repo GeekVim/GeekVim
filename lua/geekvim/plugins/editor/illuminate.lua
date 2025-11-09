@@ -2,7 +2,7 @@
 -- This works with LSP, Treesitter, and regexp matching to find the other
 -- instances.
 
-if not vim.g.geekvim_highlight == "illuminate" then
+if not vim.g.geekvim.highlight == "illuminate" then
   return {
     "RRethy/vim-illuminate",
     dependencies = {},
@@ -22,7 +22,7 @@ return {
   {
     "RRethy/vim-illuminate",
     priority = 20,
-    event = "PowerFile",
+    event = "GeekFile",
     opts = {
       delay = 200,
       large_file_cutoff = 2000,

@@ -1,4 +1,5 @@
 _G.GeekVim = require("geekvim.util")
+---@class _G.GeekVim
 
 ---@class GeekVimConfig: GeekVimOptions
 local M = {}
@@ -151,7 +152,7 @@ function M.setup(opts)
       GeekVim.format.setup()
       GeekVim.root.setup()
 
-      vim.api.nvim_create_user_command("PowerHealth", function()
+      vim.api.nvim_create_user_command("GeekHealth", function()
         vim.cmd([[Lazy! load all]])
         vim.cmd([[checkhealth]])
       end, { desc = "Load all plugins and run :checkhealth" })
@@ -163,7 +164,7 @@ function M.setup(opts)
         "vscode",
       })
 
-      if vim.g.geekvim_check_order == false then
+      if vim.g.geekvim.check_order == false then
         return
       end
 
@@ -211,25 +212,7 @@ function M.setup(opts)
 end
 
 ---@param buf? number
----@return string[]?
-function M.get_kind_filter(buf)
-  buf = (buf == nil or buf == 0) and vim.api.nvim_get_current_buf() or buf
-  local ft = vim.bo[buf].filetype
-  if M.kind_filter == false then
-    return
-  end
-  if M.kind_filter[ft] == false then
-    return
-  end
-  if type(M.kind_filter[ft]) == "table" then
-    return M.kind_filter[ft]
-  end
-  ---@diagnostic disable-next-line: return-type-mismatch
-  return type(M.kind_filter) == "table" and type(M.kind_filter.default) == "table" and M.kind_filter.default or nil
-end
-
----@param buf? number
----@return string[]?
+---@return boolean|string[]?
 function M.get_kind_filter(buf)
   buf = (buf == nil or buf == 0) and vim.api.nvim_get_current_buf() or buf
   local ft = vim.bo[buf].filetype
@@ -255,7 +238,7 @@ function M.load(name)
       end, { msg = "Failed loading " .. mod })
     end
   end
-  local pattern = "GeekVim" .. name:sub(1, 1):upper() .. name:sub(2)
+  local pattern = "GeekVim" .. string.sub(name, 1, 1):upper() .. name:sub(2)
   -- always load geekvim, then user file
   if M.defaults[name] or name == "options" then
     _load("geekvim.config." .. name)
@@ -277,7 +260,8 @@ function M.init()
   M.did_init = true
   local plugin = require("lazy.core.config").spec.plugins.GeekVim
   if plugin then
-    vim.opt.rtp:append(plugin.dir)
+    -- @class vim.opt.rtp
+    vim.opt.rtp = vim.opt.rtp + {plugin.dir}
   end
 
   package.preload["geekvim.plugins.lsp.format"] = GeekVim.format
@@ -293,8 +277,15 @@ function M.init()
   clipboard = vim.opt.clipboard
   vim.opt.clipboard = ""
 
-  if vim.g.deprecation_warnings == false then
-    vim.deprecate = function() end
+  if vim.g.geekvim.deprecation_warnings == false then
+    ---@param _name string
+    ---@param _alternative string?
+    ---@param _version string
+    ---@param _plugin string?
+    ---@param _backtrace boolean?
+    -- @return string?
+    local function deprecate(_name, _alternative, _version, _plugin, _backtrace) end
+    vim.deprecate = deprecate
   end
 
   GeekVim.plugin.setup()

@@ -1,4 +1,4 @@
-if not vim.g.geekvim_cmp == "nvim-cmp" then
+if not vim.g.geekvim.cmp == "nvim-cmp" then
   return {
     "hrsh7th/nvim-cmp",
     dependencies = {},

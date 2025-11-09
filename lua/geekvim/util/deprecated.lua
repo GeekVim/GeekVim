@@ -1,3 +1,4 @@
+---@class geekvim.util.deprecated
 local M = {}
 
 M.moved = {}

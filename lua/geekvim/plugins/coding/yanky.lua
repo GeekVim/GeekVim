@@ -3,7 +3,7 @@ return {
   "gbprod/yanky.nvim",
   priority = 20,
   desc = "Better Yank/Paste",
-  event = "PowerFile",
+  event = "GeekFile",
   opts = {
     highlight = { timer = 150 },
   },

@@ -1,4 +1,4 @@
-if not vim.g.geekvim_symbol_browser == "aerial" then
+if not vim.g.geekvim.symbol_browser == "aerial" then
   return {
     "folke/trouble.nvim",
     keys = {

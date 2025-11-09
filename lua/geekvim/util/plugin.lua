@@ -34,11 +34,11 @@ function M.setup()
 end
 
 function M.power_file()
-  -- Add support for the PowerFile event
+  -- Add support for the GeekFile event
   local Event = require("lazy.core.handler.event")
 
-  Event.mappings.PowerFile = { id = "PowerFile", event = M.lazy_file_events }
-  Event.mappings["User PowerFile"] = Event.mappings.PowerFile
+  Event.mappings.GeekFile = { id = "GeekFile", event = M.lazy_file_events }
+  Event.mappings["User GeekFile"] = Event.mappings.GeekFile
 end
 
 function M.fix_renames()

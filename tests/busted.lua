@@ -4,13 +4,13 @@ vim.env.LAZY_STDPATH = ".tests"
 load(vim.fn.system("curl -s https://raw.githubusercontent.com/folke/lazy.nvim/main/bootstrap.lua"))()
 
 -- Setup lazy.nvim
-require("lazy.minit").setup({
+require("lazy.minit").busted({
   spec = {
     { dir = vim.uv.cwd() },
     { "GeekVim/starter" },
+    { "mason-org/mason-lspconfig.nvim" },
+    { "mason-org/mason.nvim"},
     { "nvim-treesitter/nvim-treesitter" },
-    { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
-    { "mason-org/mason.nvim", version = "^1.0.0" },
     { "echasnovski/mini.icons", opts = {} },
   },
 })

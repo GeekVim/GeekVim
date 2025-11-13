@@ -1,6 +1,9 @@
----@module "luassert"
-
 local GeekVim = require("geekvim.util")
+
+local busted = require("busted")
+local describe = busted.describe
+local it = busted.it
+local assert = busted.assert
 
 describe("util", function()
   local t = 0

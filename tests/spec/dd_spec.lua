@@ -1,3 +1,8 @@
+local busted = require("busted")
+local describe = busted.describe
+local it = busted.it
+local assert = busted.assert
+
 describe("Should not have", function()
   it("dd()", function()
     local out = vim.fn.system([[/usr/bin/grep --line-number -r '\\bdd(' lua]])

@@ -5,7 +5,7 @@ function M.setup(_, opts)
   for _, key in ipairs({ "format_on_save", "format_after_save" }) do
     if opts[key] then
       local msg = "Don't set `opts.%s` for `conform.nvim`.\n**GeekVim** will use the conform formatter automatically"
-      GeekVim.warn(msg:format(key))
+      GeekVim.warn(string.format(msg, key))
       ---@diagnostic disable-next-line: no-unknown
       opts[key] = nil
     end

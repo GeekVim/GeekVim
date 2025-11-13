@@ -1,0 +1,21 @@
+{
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "Lua.diagnostics.globals": [
+        "vim"
+    ],
+    "Lua.runtime.version" : "LuaJIT",
+    "Lua.workspace.checkThirdParty": false,
+    "Lua.runtime.path": [
+        "?.lua",
+        "?/init.lua",
+        "./plugin/?.lua",
+        "./vendor/?/plugin/?.lua",
+        "/opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/lua/?/init.lua"
+    ],
+    "Lua.workspace.library": [
+        "./lua",
+        "/opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/lua/vim",
+        "${3rd}/luv/library",
+        "./vendor/?/lua"
+    ],
+}

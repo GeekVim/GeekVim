@@ -19,3 +19,12 @@
 [submodule "wk"]
 	path = vendor/which-key.nvim
 	url = git@github.com:folke/which-key.nvim.git
+[submodule "Flash"]
+	path = vendor/flash.nvim
+	url = git@github.com:folke/flash.nvim.git
+[submodule "conform"]
+	path = vendor/conform.nvim
+	url = git@github.com:stevearc/conform.nvim.git
+[submodule "nvim-treesitter"]
+	path = vendor/nvim-treesitter
+	url = git@github.com:nvim-treesitter/nvim-treesitter.git

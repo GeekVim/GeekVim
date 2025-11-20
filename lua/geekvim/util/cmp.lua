@@ -144,10 +144,15 @@ function M.expand(snippet)
       or ("Failed to parse snippet.\n" .. err)
 
     GeekVim[ok and "warn" or "error"](
-      string.format([[%s
+      string.format(
+        [[%s
 ```%s
 %s
-```]], msg, vim.bo.filetype, snippet),
+```]],
+        msg,
+        vim.bo.filetype,
+        snippet
+      ),
       { title = "vim.snippet" }
     )
   end

@@ -58,7 +58,7 @@ vim.g.geekvim = {
 
     -- Enable VS Code features
     -- Enables several extensions that emulate VS Code behavior
-    vscode = true
+    vscode = true,
   },
 
   projects = {

@@ -261,7 +261,7 @@ function M.init()
   local plugin = require("lazy.core.config").spec.plugins.GeekVim
   if plugin then
     -- @class vim.opt.rtp
-    vim.opt.rtp = vim.opt.rtp + {plugin.dir}
+    vim.opt.rtp = vim.opt.rtp + { plugin.dir }
   end
 
   package.preload["geekvim.plugins.lsp.format"] = GeekVim.format

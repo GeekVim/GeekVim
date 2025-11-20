@@ -3,14 +3,20 @@
 #########
 # Project
 #########
-.tests/
 .luarc.json
-ftdetect/
-after/
-user/
-spell/
+/ftdetect/
+/after/
+/user/
+/spell/
+/.repro/
+/.tests/
+/build/
+/debug/
+/doc/tags
+foo.*
+node_modules
+tt.*
 lazy-lock.json
-
 
 #########
 # General
@@ -126,7 +132,7 @@ nohup.out
 .DS_Store
 .AppleDouble
 .LSOverride
-Icon[]
+Icon*
 
 # Thumbnails
 ._*

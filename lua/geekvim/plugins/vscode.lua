@@ -1,4 +1,4 @@
-if not vim.g.vscode then
+if not vim.g.geekvim.vscode then
   return {}
 end
 

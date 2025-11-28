@@ -91,7 +91,7 @@ vim.g.geekvim = {
 
   -- GeekVim AI integrations.
   ai = {
-    -- Whether to enable AI integration features.
+    -- Whether to enable AI integration features when installed.
     enable = false,
 
     -- Which AI integrations to enable.

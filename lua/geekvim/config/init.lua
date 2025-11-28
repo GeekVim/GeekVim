@@ -186,7 +186,7 @@ function M.setup(opts)
           "",
           "If you think you know what you're doing, you can disable this check with:",
           "```lua",
-          "vim.g.geekvim_check_order = false",
+          "vim.g.geekvim.check_order = false",
           "```",
         }
         vim.notify(table.concat(msg, "\n"), "warn", { title = "GeekVim" })

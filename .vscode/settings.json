@@ -15,7 +15,10 @@
     "Lua.workspace.library": [
         "./lua",
         "/opt/homebrew/Cellar/neovim/0.11.5/share/nvim/runtime/lua/vim",
-        "${3rd}/luv/library",
+        "./vendor/?/library",
         "./vendor/?/lua"
     ],
+    "debug.javascript.defaultRuntimeExecutable": {
+        "pwa-node": "${workspaceFolder}/.vscode/mise-tools/node"
+    },
 }

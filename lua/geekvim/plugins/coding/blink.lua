@@ -119,7 +119,7 @@ return {
       -- add ai_accept to <Tab> key
       ---@diagnostic disable-next-line: undefined-field
       if not opts.keymap["<Tab>"] then
-      ---@diagnostic disable-next-line: undefined-field
+        ---@diagnostic disable-next-line: undefined-field
         if opts.keymap.preset == "super-tab" then -- super-tab
           ---@diagnostic disable-next-line: undefined-field
           opts.keymap["<Tab>"] = {

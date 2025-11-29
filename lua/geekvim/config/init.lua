@@ -178,7 +178,7 @@ function M.setup(opts)
         end
       end
       local geekvim_plugins = find("^geekvim%.plugins$")
-      local bundles = find("^geekvim%.plugins%.bundles$", true)
+      local bundles = find("^geekvim%.plugins%.bundles$", true) or 0
       local plugins = find("^plugins$") or math.huge
       if geekvim_plugins ~= 1 or bundles > plugins then
         local msg = {

@@ -178,10 +178,13 @@ function M.setup(opts)
         end
       end
       local geekvim_plugins = find("^geekvim%.plugins$")
-      if geekvim_plugins ~= 1 then
+      local bundles = find("^geekvim%.plugins%.bundles$", true)
+      local plugins = find("^plugins$") or math.huge
+      if geekvim_plugins ~= 1 or bundles > plugins then
         local msg = {
           "The order of your `power.nvim` imports is incorrect:",
           "- `geekvim.plugins` should be first",
+          "- followed by any `geekvim.plugins.bundles`",
           "- followed by your own `plugins`",
           "",
           "If you think you know what you're doing, you can disable this check with:",

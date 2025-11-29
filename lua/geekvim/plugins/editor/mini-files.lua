@@ -43,7 +43,7 @@ return {
     },
   },
   config = function(_, opts)
-    require("mini.files").setup(opts)
+    local MiniFiles = require("mini.files").setup(opts)
 
     local show_dotfiles = true
     local filter_show = function(fs_entry)

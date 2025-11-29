@@ -1,7 +1,8 @@
 -- Terminal Mappings
 local function term_nav(dir)
-  ---@param self snacks.terminal
+  ---@param self Snacks.terminal
   return function(self)
+    ---@diagnostic disable-next-line: undefined-field
     return self:is_floating() and "<c-" .. dir .. ">" or vim.schedule(function()
       vim.cmd.wincmd(dir)
     end)

@@ -1,4 +1,5 @@
-local GeekUtil = require("lazy.core.util")
+local LazyUtilCore = require("lazy.core.util")
+---@class LazyUtilCore
 
 ---@class geekvim.util: LazyUtilCore
 ---@field config GeekVimConfig
@@ -18,8 +19,8 @@ local M = {}
 
 setmetatable(M, {
   __index = function(t, k)
-    if GeekUtil[k] then
-      return GeekUtil[k]
+    if LazyUtilCore[k] then
+      return LazyUtilCore[k]
     end
     if k == "lazygit" or k == "toggle" then -- HACK: special case for lazygit
       return M.deprecated[k]()
@@ -95,7 +96,7 @@ function M.opts(name)
 end
 
 function M.deprecate(old, new)
-  M.warn(("`%s` is deprecated. Please use `%s` instead"):format(old, new), {
+  LazyUtilCore.warn(("`%s` is deprecated. Please use `%s` instead"):format(old, new), {
     title = "GeekVim",
     once = true,
     stacktrace = true,
@@ -209,6 +210,7 @@ end
 
 M.CREATE_UNDO = vim.api.nvim_replace_termcodes("<c-G>u", true, true, true)
 function M.create_undo()
+  ---@diagnostic disable-next-line: undefined-field
   if vim.api.nvim_get_mode().mode == "i" then
     vim.api.nvim_feedkeys(M.CREATE_UNDO, "n", false)
   end
@@ -228,7 +230,7 @@ function M.get_pkg_path(pkg, path, opts)
   path = path or ""
   local ret = root .. "/packages/" .. pkg .. "/" .. path
   if opts.warn and not vim.loop.fs_stat(ret) and not require("lazy.core.config").headless() then
-    M.warn(
+    LazyUtilCore.warn(
       ("Mason package path not found for **%s**:\n- `%s`\nYou may need to force update the package."):format(pkg, path)
     )
   end
@@ -240,7 +242,7 @@ for _, level in ipairs({ "info", "warn", "error" }) do
   M[level] = function(msg, opts)
     opts = opts or {}
     opts.title = opts.title or "GeekVim"
-    return GeekUtil[level](msg, opts)
+    return LazyUtilCore[level](msg, opts)
   end
 end
 

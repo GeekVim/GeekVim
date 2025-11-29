@@ -43,12 +43,13 @@ return {
         },
         ---@param opts bufferline.IconFetcherOpts
         get_element_icon = function(opts)
+          ---@diagnostic disable-next-line: undefined-field
           return GeekVim.config.icons.ft[opts.filetype]
         end,
       },
     },
     config = function(_, opts)
-      require("bufferline").setup(opts)
+      local nvim_bufferline = require("bufferline").setup(opts)
       -- Fix bufferline when restoring a session
       vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
         callback = function()
@@ -141,6 +142,7 @@ return {
                 removed = icons.git.removed,
               },
               source = function()
+                ---@diagnostic disable-next-line: undefined-field
                 local gitsigns = vim.b.gitsigns_status_dict
                 if gitsigns then
                   return {
@@ -167,6 +169,7 @@ return {
 
       -- do not add trouble symbols if aerial is enabled
       -- And allow it to be overriden for some buffer types (see autocmds)
+      ---@diagnostic disable-next-line: undefined-field
       if vim.g.trouble_lualine and GeekVim.has("trouble.nvim") then
         local trouble = require("trouble")
         local symbols = trouble.statusline({
@@ -180,6 +183,7 @@ return {
         table.insert(opts.sections.lualine_c, {
           symbols and symbols.get,
           cond = function()
+            ---@diagnostic disable-next-line: undefined-field
             return vim.b.trouble_lualine ~= false and symbols.has()
           end,
         })
@@ -277,7 +281,7 @@ return {
       scroll = { enabled = true },
       statuscolumn = { enabled = false }, -- we set this in options.lua
       toggle = { map = GeekVim.safe_keymap_set },
-      words = { enabled = vim.g.geekvim_highlight == "snacks" },
+      words = { enabled = vim.g.geekvim.highlight == "snacks" },
     },
     -- stylua: ignore
     keys = {

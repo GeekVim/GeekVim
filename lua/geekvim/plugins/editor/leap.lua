@@ -8,7 +8,7 @@ return {
     priority = 20,
     enabled = true,
     keys = function()
-      ---@type GeekKeysSpec[]
+      ---@type GeekKeysLspSpec[]
       local ret = {}
       for _, key in ipairs({ "f", "F", "t", "T" }) do
         ret[#ret + 1] = { key, mode = { "n", "x", "o" } }

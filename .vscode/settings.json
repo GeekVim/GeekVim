@@ -1,7 +1,13 @@
 {
     "editor.unicodeHighlight.ambiguousCharacters": false,
     "Lua.diagnostics.globals": [
-        "vim"
+        "vim",
+        "Snacks",
+        "MiniSnippets",
+    ],
+    "Lua.diagnostics.disable": [
+        "undefined-doc-name",
+        "undefined-doc-class"
     ],
     "Lua.runtime.version" : "LuaJIT",
     "Lua.workspace.checkThirdParty": false,

@@ -1,4 +1,4 @@
-if not vim.g.geekvim_picker == "snacks" then
+if not vim.g.geekvim.picker == "snacks" then
   return {
     "folke/snacks.nvim",
     keys = {
@@ -91,10 +91,14 @@ return {
         actions = {
           ---@param p snacks.Picker
           toggle_cwd = function(p)
+            ---@diagnostic disable-next-line: undefined-field
             local root = GeekVim.root({ buf = p.input.filter.current_buf, normalize = true })
             local cwd = vim.fs.normalize((vim.uv or vim.loop).cwd() or ".")
+            ---@diagnostic disable-next-line: undefined-field
             local current = p:cwd()
+            ---@diagnostic disable-next-line: undefined-field
             p:set_cwd(current == root and cwd or root)
+            ---@diagnostic disable-next-line: undefined-field
             p:find()
           end,
         },

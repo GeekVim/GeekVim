@@ -77,27 +77,10 @@ vim.g.geekvim = {
 
   -- Completions configuration.
   cmp = {
-    -- GeekVim AI completions.
-    -- If AI integration is enabled and the
-    -- completion engine supports the AI source,
-    -- use that instead of inline suggestions
-    ai = false,
-
     -- Snippets in completions
     -- Set to `false` to prevent "non-lsp snippets"" from appearing inside completion windows
     -- Motivation: Less clutter in completion windows and a more direct usage of snippets
     snippets = true,
-  },
-
-  -- GeekVim AI integrations.
-  ai = {
-    -- Whether to enable AI integration features when installed.
-    enable = false,
-
-    -- Which AI integrations to enable.
-    -- May be zero or more of:
-    --   copilot, copilot-chat, codeium, tabnine, supermaven
-    integrations = {},
   },
 }
 

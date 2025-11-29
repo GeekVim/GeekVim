@@ -14,6 +14,7 @@ function M.get_clients(opts)
     if opts and opts.method then
       ---@param client vim.lsp.Client
       ret = vim.tbl_filter(function(client)
+        ---@diagnostic disable-next-line: undefined-field
         return client.supports_method(opts.method, { bufnr = opts.bufnr })
       end, ret)
     end
@@ -28,6 +29,7 @@ function M.on_attach(on_attach, name)
     callback = function(args)
       local buffer = args.buf ---@type number
       local client = vim.lsp.get_client_by_id(args.data.client_id)
+      ---@diagnostic disable-next-line: undefined-field
       if client and (not name or client.name == name) then
         return on_attach(client, buffer)
       end
@@ -45,9 +47,11 @@ function M.setup()
     local ret = register_capability(err, res, ctx)
     local client = vim.lsp.get_client_by_id(ctx.client_id)
     if client then
+      ---@diagnostic disable-next-line: undefined-field
       for buffer in pairs(client.attached_buffers) do
         vim.api.nvim_exec_autocmds("User", {
           pattern = "LspDynamicCapability",
+          ---@diagnostic disable-next-line: undefined-field
           data = { client_id = client.id, buffer = buffer },
         })
       end
@@ -75,10 +79,12 @@ function M._check_methods(client, buffer)
   for method, clients in pairs(M._supports_method) do
     clients[client] = clients[client] or {}
     if not clients[client][buffer] then
+      ---@diagnostic disable-next-line: undefined-field
       if client.supports_method and client.supports_method(method, { bufnr = buffer }) then
         clients[client][buffer] = true
         vim.api.nvim_exec_autocmds("User", {
           pattern = "LspSupportsMethod",
+          ---@diagnostic disable-next-line: undefined-field
           data = { client_id = client.id, buffer = buffer, method = method },
         })
       end
@@ -135,6 +141,7 @@ end
 
 function M.is_enabled(server)
   local c = M.get_config(server)
+  ---@diagnostic disable-next-line: undefined-field
   return c and c.enabled ~= false
 end
 
@@ -169,11 +176,14 @@ function M.formatter(opts)
       local clients = M.get_clients(GeekVim.merge({}, filter, { bufnr = buf }))
       ---@param client vim.lsp.Client
       local ret = vim.tbl_filter(function(client)
+        ---@diagnostic disable-next-line: undefined-field
         return client.supports_method("textDocument/formatting")
+          ---@diagnostic disable-next-line: undefined-field
           or client.supports_method("textDocument/rangeFormatting")
       end, clients)
       ---@param client vim.lsp.Client
       return vim.tbl_map(function(client)
+        ---@diagnostic disable-next-line: undefined-field
         return client.name
       end, ret)
     end,
@@ -224,7 +234,9 @@ M.action = setmetatable({}, {
 ---@param opts LspCommand
 function M.execute(opts)
   local params = {
+    ---@diagnostic disable-next-line: undefined-field
     command = opts.command,
+    ---@diagnostic disable-next-line: undefined-field
     arguments = opts.arguments,
   }
   if opts.open then

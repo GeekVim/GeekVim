@@ -101,11 +101,14 @@ return {
     ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
     config = function(_, opts)
       -- setup compat sources
+      ---@diagnostic disable-next-line: undefined-field
       local enabled = opts.sources.default
       for _, source in ipairs(opts.sources.compat or {}) do
+        ---@diagnostic disable-next-line: undefined-field
         opts.sources.providers[source] = vim.tbl_deep_extend(
           "force",
           { name = source, module = "blink.compat.source" },
+          ---@diagnostic disable-next-line: undefined-field
           opts.sources.providers[source] or {}
         )
         if type(enabled) == "table" and not vim.tbl_contains(enabled, source) then
@@ -114,14 +117,18 @@ return {
       end
 
       -- add ai_accept to <Tab> key
+      ---@diagnostic disable-next-line: undefined-field
       if not opts.keymap["<Tab>"] then
+      ---@diagnostic disable-next-line: undefined-field
         if opts.keymap.preset == "super-tab" then -- super-tab
+          ---@diagnostic disable-next-line: undefined-field
           opts.keymap["<Tab>"] = {
             require("blink.cmp.keymap.presets")["super-tab"]["<Tab>"][1],
             GeekVim.cmp.map({ "snippet_forward", "ai_accept" }),
             "fallback",
           }
         else -- other presets
+          ---@diagnostic disable-next-line: undefined-field
           opts.keymap["<Tab>"] = {
             GeekVim.cmp.map({ "snippet_forward", "ai_accept" }),
             "fallback",
@@ -133,6 +140,7 @@ return {
       opts.sources.compat = nil
 
       -- check if we need to override symbol kinds
+      ---@diagnostic disable-next-line: undefined-field
       for _, provider in pairs(opts.sources.providers or {}) do
         ---@cast provider blink.cmp.SourceProviderConfig|{kind?:string}
         if provider.kind then
@@ -147,10 +155,13 @@ return {
           local transform_items = provider.transform_items
           ---@param ctx blink.cmp.Context
           ---@param items blink.cmp.CompletionItem[]
+          ---@diagnostic disable-next-line: inject-field
           provider.transform_items = function(ctx, items)
             items = transform_items and transform_items(ctx, items) or items
             for _, item in ipairs(items) do
+              ---@diagnostic disable-next-line: inject-field
               item.kind = kind_idx or item.kind
+              ---@diagnostic disable-next-line: inject-field,undefined-field
               item.kind_icon = GeekVim.config.icons.kinds[item.kind_name] or item.kind_icon or nil
             end
             return items

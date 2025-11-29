@@ -127,7 +127,9 @@ return {
 
       -- diagnostics signs
       if vim.fn.has("nvim-0.10.0") == 0 then
+        ---@diagnostic disable-next-line: undefined-field
         if type(opts.diagnostics.signs) ~= "boolean" then
+          ---@diagnostic disable-next-line: undefined-field
           for severity, icon in pairs(opts.diagnostics.signs.text) do
             local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
             name = "DiagnosticSign" .. name
@@ -162,7 +164,9 @@ return {
         end
       end
 
+      ---@diagnostic disable-next-line: undefined-field
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
+        ---@diagnostic disable-next-line: undefined-field
         opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0 and "●"
           or function(diagnostic)
             local icons = GeekVim.config.icons.diagnostics

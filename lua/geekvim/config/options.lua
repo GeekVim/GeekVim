@@ -23,38 +23,32 @@ vim.g.geekvim = {
   -- GeekVim component modules to use.
   components = {
     -- GeekVim picker to use.
-    -- Can be one of: telescope, fzf, snacks, user
-    -- Leave it to "auto" to automatically use the default
-    picker = "auto",
+    -- Can be one of: telescope, fzf, snacks
+    picker = "snacks",
 
     -- GeekVim file explorer to use.
-    -- Can be one of: neo-tree, mini, snacks, user
-    -- Leave it to "auto" to automatically use the default
-    explorer = "auto",
+    -- Can be one of: neo-tree, mini, snacks
+    explorer = "snacks",
 
     -- GeekVim completion engine to use.
-    -- Can be one of: nvim-cmp, blink.cmp, user
-    -- Leave it to "auto" to automatically use the default
-    cmp = "auto",
+    -- Can be one of: nvim-cmp, blink.cmp
+    cmp = "blink.cmp",
 
     -- GeekVim word highlighter to use.
-    -- Can be one of: snacks, illuminate, user
-    -- Leave it to "auto" to automatically use the default
-    highlight = "auto",
+    -- Can be one of: snacks, illuminate
+    highlight = "snacks",
 
     -- GeekVim diff visualizer to use.
     -- Can be one of: gitsigns, mini, user
-    diff = "auto",
+    diff = "mini",
 
     -- GeekVim symbol browser to use.
-    -- Can be one of: trouble, aerial, outline, user, auto
-    -- Leave it to "auto" to automatically use the default
-    symbol_browser = "auto",
+    -- Can be one of: trouble, aerial, outline
+    symbol_browser = "aerial",
 
     -- Snippets engine to use
-    -- Can be one of: nvim-snippets, mini, luasnip, user, auto
-    -- Leave it to "auto" to automatically use the default
-    snippets = "auto",
+    -- Can be one of: nvim-snippets, mini, luasnip
+    snippets = "mini",
 
     -- Enable VS Code features
     -- Enables several extensions that emulate VS Code behavior
